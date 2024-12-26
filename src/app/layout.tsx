@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../../public/styles/globals.css";
 import "grapesjs/dist/css/grapes.min.css";
 import "swiper/css";
 import "swiper/css/navigation";
