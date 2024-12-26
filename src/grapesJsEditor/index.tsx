@@ -1,14 +1,16 @@
 "use client";
+import "grapesjs/dist/css/grapes.min.css";
+import "aos/dist/aos.css";
+
 import grapesjs, { Editor } from "grapesjs";
 import gsPluginForms from "grapesjs-plugin-forms";
 import gsWebpage from "grapesjs-preset-webpage";
 import gsBlocks from "grapesjs-blocks-basic";
 import gsFlexBlock from "grapesjs-blocks-flexbox";
 import gsCustome from "grapesjs-custom-code";
+
 import React, { useEffect, useRef } from "react";
-import "grapesjs/dist/css/grapes.min.css";
 import { serversideDataProps } from "@/app/page";
-import GsListing from "@/components/listing/gsListing";
 import AddSaveDataPanel from "./panel/saveData";
 import GsSlider from "@/components/customImageSlider/gsSlider";
 import GsFeaturedCategory from "@/components/featuredCategory/gsFeaturedCategory";
@@ -26,8 +28,12 @@ import GsHoverDisplayContent from "@/components/hoverDisplayContent/GsHoverDispl
 import GsSlideAnimation from "@/components/slidesAnimation/gsSlideAnimation";
 import GsImageTextAnimation from "@/components/image_text_animation/gsImageTextAniamtion";
 import Aos from "aos";
-import "aos/dist/aos.css";
 import GsTabs from "@/components/tabs/gsTabs";
+import GsConstantHorizantalScrollSlide from "@/components/constantHorizantalScroll/gsConstantHorizantalScroll";
+import GsConstantScrollSlide from "@/components/constatntSlidesScroll/gsConstantSlides";
+import GsHorizantalScrollSlide from "@/components/horizontalSlideScroll/gsHorizantal";
+import GsDotSlideScroll from "@/components/dotsSlideScroll/gsDotSlideScroll";
+import GsSimpleSlider from "@/components/simpleSlider/gsSimpleSlider";
 
 interface grapejsEditorProps {
   serverSideData?: serversideDataProps[];
@@ -39,13 +45,9 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
 
   const editorRef = useRef<Editor | null>(null);
 
-  // const loadEndpoint = "api/loadData";
-  // const saveEndpoint = "api/saveData";
-
   const loadEndpoint = `/api/loadGrapesData?id=${pageId}`;
   const saveEndpoint = "/api/saveGrapesData";
 
-  // const projectID = "giuligartner_cms";
   useEffect(() => {
     setTimeout(function () {
       Aos.init({
@@ -177,19 +179,6 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
         autoload: true,
         options: {
           remote: {
-            // Json
-            // contentTypeJson: true,
-            // urlLoad: loadEndpoint,
-            // urlStore: saveEndpoint,
-            // onStore: (data) => {
-            //   console.log("datadatadatadata", data);
-            //   return { id: projectID, data };
-            // },
-            // onLoad: (result) => {
-            //   console.log("data", result.data);
-            //   return result.data.data || {};
-            // },
-
             // For DB
             contentTypeJson: true,
             urlLoad: loadEndpoint,
@@ -209,6 +198,7 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
         styles: [
           "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css",
           "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css",
+          "https://unpkg.com/flickity@2.2.2/dist/flickity.min.cssflickity/dist/flickity.min.css",
           "/styles/globals.css",
         ],
       },
@@ -218,7 +208,6 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
     AddSaveDataPanel(editorRef.current);
 
     // Add custom component
-    GsListing(editorRef.current, serverSideData || []);
     GsSlider(editorRef.current, pageId);
     GsFeaturedCategory(editorRef.current, serverSideData || []);
     GsLogosSlider(editorRef.current, pageId);
@@ -231,9 +220,14 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
     GsTabAccordian(editorRef.current);
     GsHoverDisplayContent(editorRef.current);
     GsSlideAnimation(editorRef.current);
-    GsTabs(editorRef.current);
-
     GsImageTextAnimation(editorRef.current);
+
+    GsTabs(editorRef.current);
+    GsConstantHorizantalScrollSlide(editorRef.current);
+    GsConstantScrollSlide(editorRef.current);
+    GsHorizantalScrollSlide(editorRef.current);
+    GsDotSlideScroll(editorRef.current);
+    GsSimpleSlider(editorRef.current);
 
     editorRef.current.on("component:add", () => {
       Aos.refresh();

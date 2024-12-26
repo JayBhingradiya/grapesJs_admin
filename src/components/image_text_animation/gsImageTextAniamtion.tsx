@@ -70,7 +70,7 @@ const GsImageTextAnimation = (editor: Editor) => {
     },
   });
   editor.BlockManager.add("image_Text_Animation", {
-    label: "imageTextAnimation",
+    label: "ImageTextAnimation",
     category: "React-component",
     content: {
       type: "imageTextAnimation",
