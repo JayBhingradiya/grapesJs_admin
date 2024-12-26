@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import "grapesjs/dist/css/grapes.min.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "aos/dist/aos.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import AosProvider from "@/components/AosProvider/AosProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +32,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="stylesheets/grapes.min.css" />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AosProvider>{children}</AosProvider>
       </body>
     </html>
   );
