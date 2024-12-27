@@ -34,6 +34,8 @@ import GsConstantScrollSlide from "@/components/constatntSlidesScroll/gsConstant
 import GsHorizantalScrollSlide from "@/components/horizontalSlideScroll/gsHorizantal";
 import GsDotSlideScroll from "@/components/dotsSlideScroll/gsDotSlideScroll";
 import GsSimpleSlider from "@/components/simpleSlider/gsSimpleSlider";
+import GsLogosSlider2 from "@/components/scrollableLogos2/gsSlider2";
+import GsAccordion from "@/components/accordion/gsAccordion";
 
 interface grapejsEditorProps {
   serverSideData?: serversideDataProps[];
@@ -211,6 +213,7 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
     GsSlider(editorRef.current, pageId);
     GsFeaturedCategory(editorRef.current, serverSideData || []);
     GsLogosSlider(editorRef.current, pageId);
+    GsLogosSlider2(editorRef.current);
     GsBrAlphabet(editorRef.current);
     gsLogoListing(editorRef.current);
     GsReview(editorRef.current);
@@ -228,6 +231,7 @@ const GrapeJsEditor: React.FC<grapejsEditorProps> = ({ serverSideData }) => {
     GsHorizantalScrollSlide(editorRef.current);
     GsDotSlideScroll(editorRef.current);
     GsSimpleSlider(editorRef.current);
+    GsAccordion(editorRef.current)
 
     editorRef.current.on("component:add", () => {
       Aos.refresh();
